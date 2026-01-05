@@ -9,9 +9,9 @@
 }
 
 :root[class~="dark"] {
-    --primary: var(--color-blue-500);
-    --header-bg: var(--color-gray-800);
-    --section-bg: var(--color-gray-800);
+    --primary: var(--color-gray-500);
+    --header-bg: var(--color-black);
+    --section-bg: var(--color-black);
 }
 
 @theme {

@@ -4,7 +4,7 @@ import {createContext, type FunctionComponent, type ReactNode, useCallback, useE
 const IS_DARK_MODE_LOCAL_STORAGE_KEY = "WEBSITE_DARK_MODE";
 
 const initialState = {
-    isDarkMode: false,
+    isDarkMode: true,
     setIsDarkMode: (val: boolean) => {
         console.debug("Dark mode toggle requested, but no provider is mounted:", val);
     }
@@ -20,7 +20,7 @@ interface Props {
 }
 
 export const ThemeProvider: FunctionComponent<Props> = ({ children }) => {
-    const [isDarkMode, setIsDarkModeInState] = useState(false);
+    const [isDarkMode, setIsDarkModeInState] = useState(true);
 
     const setIsDarkModeinStateAndInCSS = useCallback(
         (newIsDarkMode: boolean)=> {

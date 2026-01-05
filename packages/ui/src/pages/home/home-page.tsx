@@ -1,33 +1,30 @@
-import {FunctionComponent} from "react";
-import {DescriptionSection, DescriptionSectionProps} from "./description-section";
-import { HomePageHeader } from "./home-page-header";
-
-const descriptionSectionProps: Omit<DescriptionSectionProps, "index">[] = [
-    {
-        title: "The power of 1",
-        description: "1 guide. 1 package. 1 pipeline. 1 language. 1 website pre-configured just for you!",
-        icon: "status-positive"
-    },
-    {
-        title: "Batteries Included",
-        description: "This template is opinionated by default and includes all of what we think is important for speeding up the process of getting to production.",
-        icon: "ticket"
-    },
-    {
-        title: "Security Focused",
-        description: "This template is designed to be secure by default, requiring authentication to be set up on package creation.",
-        icon: "lock-private"
-    }
-]
+import { type FunctionComponent } from "react";
+import {Carousel} from "../../components/carousel";
+import {Container, SpaceBetween, TextContent} from "@cloudscape-design/components";
 
 export const HomePage: FunctionComponent = () => {
+    const imgs = [
+      "/1.jpg",
+      "/2.jpg",
+      "/3.jpg",
+      "/4.jpg",
+      "/5.jpg",
+      "/6.jpg",
+      "/7.jpg",
+      "/8.jpg"
+    ]
     return (
-        <>
-            <HomePageHeader />
-
-            {descriptionSectionProps.map((props, index) => (
-                <DescriptionSection key={index} index={index} {...props} />
-            ))}
-        </>
+      <SpaceBetween size={"s"} direction={"vertical"} alignItems={"center"}>
+          <Container>
+              <SpaceBetween size={"s"} direction={"vertical"} alignItems={"center"}>
+                  <TextContent>
+                      <h1>Pardon our dust, our website is still under construction!</h1>
+                  </TextContent>
+              </SpaceBetween>
+          </Container>
+          <Carousel>
+              {imgs.map((img) => <img src={img} alt={"Error retrieving image"} style={{width: "75vh", objectFit: "contain"}}/>)}
+          </Carousel>
+      </SpaceBetween>
     )
 }

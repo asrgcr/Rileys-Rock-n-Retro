@@ -7,13 +7,16 @@
   "type": "module",
   "sideEffects": false,
   "scripts": {
-    "build": "tsc --build tsconfig.lib.json",
+    "build": "vite build",
     "start": "vite dev",
     "typecheck": "tsc"
   },
   "nx": {
     "targets": {
       "build": {
+        "dependsOn": [
+          "^build"
+        ],
         "outputs": [
           "{workspaceRoot}/build/ui"
         ]
@@ -26,6 +29,9 @@
     "@cloudscape-design/code-view": "^3.0.64",
     "@cloudscape-design/design-tokens": "^3.0.58",
     "@cloudscape-design/chat-components": "^1.0.51",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.3.4",
     "@tailwindcss/vite": "^4.1.10",
     "@tanstack/react-query": "^5.69.0",
     "@trpc/client": "^11.1.2",

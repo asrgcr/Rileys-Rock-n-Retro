@@ -6,7 +6,7 @@ export const Logo: FunctionComponent = () => {
     const { isDarkMode } = useContext(DarkModeContext)
     return (
         <Link to={"/"} className={"mt-[10px] flex grow-4 items-center gap-2 md:grow-0"}>
-            <img src={"/website.png"} alt={"Website Logo"} width={40} className={isDarkMode ? "invert-100" : ""}/>
+            <img src={"/website.png"} alt={"Website Logo"} width={60} className={isDarkMode ? "" : ""}/>
         </Link>
     );
 };

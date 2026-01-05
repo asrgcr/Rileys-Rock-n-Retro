@@ -2,11 +2,13 @@ import type { IndexRouteObject, NonIndexRouteObject } from 'react-router';
 import { PermissionWrapper } from "./helpers/permission-wrapper"
 import type {RouteMetadata} from "./types/route.ts";
 import { HomePage } from "./pages/home/home-page"
-import {ArchitecturePage} from "./pages/architecture/architecture-page";
+import {HoursPage} from "./pages/hours/hours-page";
+import {EventsPage} from "./pages/events/events-page";
 
 export const ROUTE_PATHS = {
     HOME: "/",
-    ARCHITECTURE: "/architecture",
+    HOURS: "/hours",
+    EVENTS: "/events",
 } as const;
 
 export const HOME_ROUTE: RouteMetadata = {
@@ -15,15 +17,21 @@ export const HOME_ROUTE: RouteMetadata = {
     path: ROUTE_PATHS.HOME,
 };
 
-export const ARCHITECTURE_ROUTE: RouteMetadata = {
-    title: "Architecture",
-    description: "Website Architecture Overview",
-    path: ROUTE_PATHS.ARCHITECTURE,
+export const HOURS_ROUTE: RouteMetadata = {
+    title: "About Us",
+    description: "Store Hours and Address",
+    path: ROUTE_PATHS.HOURS,
+}
+
+export const EVENTS_ROUTE: RouteMetadata = {
+    title: "Events",
+    description: "Store Events",
+    path: ROUTE_PATHS.EVENTS,
 }
 
 export const routeMetadata: RouteMetadata[] = [
     HOME_ROUTE,
-    ARCHITECTURE_ROUTE,
+    HOURS_ROUTE,
 ];
 
 export const routes: (IndexRouteObject | NonIndexRouteObject)[] = [
@@ -36,8 +44,12 @@ export const routes: (IndexRouteObject | NonIndexRouteObject)[] = [
                 element: <HomePage />
             },
             {
-                path: ROUTE_PATHS.ARCHITECTURE,
-                element: <ArchitecturePage />
+                path: ROUTE_PATHS.HOURS,
+                element: <HoursPage />
+            },
+            {
+                path: ROUTE_PATHS.EVENTS,
+                element: <EventsPage />
             }
         ]
     }

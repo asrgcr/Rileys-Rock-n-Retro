@@ -6,10 +6,10 @@
   },
   "targetDefaults": {
     "build": {
-      "cache": true
+      "cache": false
     },
     "type-check": {
-      "cache": true
+      "cache": false
     }
   }
 }

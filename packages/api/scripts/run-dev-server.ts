@@ -1,6 +1,15 @@
 import express from "express";
 import { Context, LambdaFunctionURLEventWithIAMAuthorizer } from "aws-lambda";
 import getRawBody from "raw-body";
+import {setupEnvironment} from "./set-env-vars";
+
+console.log("🚀 run-dev-server.ts starting...");
+
+try {
+    await setupEnvironment();
+} catch (err) {
+    console.error("Startup failed", err);
+}
 
 const app = express();
 const uiLocalHost = "http://localhost:8080";
