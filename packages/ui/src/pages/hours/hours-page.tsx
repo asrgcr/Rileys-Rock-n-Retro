@@ -7,23 +7,19 @@ import type {StoreInfo} from "@website/api/src/schemas/store-info";
 
 const getWeek = (dateString: string): string => {
     const [year, month, day] = dateString.split("-").map(Number);
-    const date = new Date(year, month - 1, day);
-    date.setHours(0, 0, 0, 0);
+
+    const date = new Date(Date.UTC(year, month - 1, day));
 
     const sunday = new Date(date);
-    sunday.setDate(date.getDate() - date.getDay());
+    sunday.setUTCDate(date.getUTCDate() - date.getUTCDay());
 
-    const jan1 = new Date(year, 0, 1);
-    jan1.setHours(0, 0, 0, 0);
-
-    const nextJan1 = new Date(year + 1, 0, 1);
-    nextJan1.setHours(0, 0, 0, 0);
-
+    const jan1 = new Date(Date.UTC(year, 0, 1));
     const jan1WeekStart = new Date(jan1);
-    jan1WeekStart.setDate(jan1.getDate() - jan1.getDay());
+    jan1WeekStart.setUTCDate(jan1.getUTCDate() - jan1.getUTCDay());
 
+    const nextJan1 = new Date(Date.UTC(year + 1, 0, 1));
     const nextJan1WeekStart = new Date(nextJan1);
-    nextJan1WeekStart.setDate(nextJan1.getDate() - nextJan1.getDay());
+    nextJan1WeekStart.setUTCDate(nextJan1.getUTCDate() - nextJan1.getUTCDay());
 
     if (sunday < jan1WeekStart) {
         return getWeek(`${year - 1}-12-31`);
@@ -46,9 +42,9 @@ export const HoursPage: FunctionComponent = () => {
     const data = rawData as StoreInfo | undefined;
 
     const [year, month, day] = value.split("-").map(Number);
-    const selectedDate = new Date(year, month - 1, day);
+    const selectedDate = new Date(Date.UTC(year, month - 1, day));
     const firstDay = new Date(selectedDate)
-    firstDay.setDate(selectedDate.getDate() - selectedDate.getDay())
+    firstDay.setUTCDate(selectedDate.getUTCDate() - selectedDate.getUTCDay())
 
     const hoursArray = () => {
         if (!data?.dataValue) return [];
@@ -70,11 +66,12 @@ export const HoursPage: FunctionComponent = () => {
         return dayOrder.map((day, i) => {
             const dayInfo = days[day];
             const date = new Date(firstDay);
-            date.setDate(firstDay.getDate() + i);
+            date.setUTCDate(firstDay.getUTCDate() + i);
 
             const dateLabel = date.toLocaleDateString("en-US", {
                 month: "2-digit",
                 day: "2-digit",
+                timeZone: "UTC"
             });
 
             const hours =

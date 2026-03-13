@@ -46,11 +46,63 @@ const data = {
     }
 }
 
-const parsed = storeInfo.parse(data)
+const data2 = {
+    dataType: "HOURS#2026:11",
+    dataValue: {
+        sunday: {
+            open: "",
+            close: "",
+            isOpen: false,
+        },
+        monday: {
+            open: "",
+            close: "",
+            isOpen: false,
+        },
+        tuesday: {
+            open: "",
+            close: "",
+            isOpen: false,
+        },
+        wednesday: {
+            open: "12pm",
+            close: "7pm",
+            isOpen: true,
+        },
+        thursday: {
+            open: "12pm",
+            close: "4pm",
+            isOpen: true,
+        },
+        friday: {
+            open: "",
+            close: "",
+            isOpen: false,
+        },
+        saturday: {
+            open: "12pm",
+            close: "5pm",
+            isOpen: true,
+        },
+    }
+}
 
-const insertStoreHours = new PutCommand({
-    TableName: "StoreInfo",
-    Item: parsed,
-})
+const weeks = [data,data2]
 
-await ddb.send(insertStoreHours)
+
+export const InsertHours = async () => {
+    await Promise.all(
+      weeks.map((week) => {
+            ddb.send(
+              new PutCommand({
+                  TableName: "StoreInfo",
+                  Item: storeInfo.parse(week),
+              })
+            )
+            console.log(`Inserting ${week.dataType}`)
+        }
+      )
+    );
+};
+
+await InsertHours()

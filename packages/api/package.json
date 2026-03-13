@@ -11,7 +11,8 @@
     "build": "rolldown -c rolldown.config.ts",
     "typecheck": "tsc",
     "start": "concurrently \"npm:start-db\" \"tsx watch scripts/run-dev-server.ts\"",
-    "start-db": "tsx scripts/run-db.ts"
+    "start-db": "tsx scripts/run-db.ts",
+    "insert-hours": "tsx scripts/insert-hours.ts"
   },
   "nx": {
     "targets": {

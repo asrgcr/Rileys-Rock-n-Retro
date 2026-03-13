@@ -43,7 +43,7 @@ export class WebsiteStack extends cdk.Stack {
         type: dynamodb.AttributeType.STRING,
       },
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
-      removalPolicy: cdk.RemovalPolicy.DESTROY, // RETAIN in prod
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
 
     storeInfoTable.grantReadData(apiLambda);

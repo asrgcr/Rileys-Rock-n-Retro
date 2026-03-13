@@ -3,11 +3,9 @@ import {
     CreateTableCommandInput,
     ListTablesCommand
 } from "@aws-sdk/client-dynamodb";
-import {PutCommand, UpdateCommand} from "@aws-sdk/lib-dynamodb";
 import dynamodbLocal from "dynamodb-local";
 import {setupEnvironment} from "./set-env-vars";
-import {storeInfo} from "../src/schemas/store-info";
-import {ddb} from "../src/helpers/clients/dynamodb";
+import {InsertHours} from "./insert-hours";
 
 await setupEnvironment();
 
@@ -111,6 +109,8 @@ for (const command of createTableCommands) {
     await createTable(command);
     await new Promise(resolve => setTimeout(resolve, 500));
 }
+
+void InsertHours()
 
 console.log("DynamoDB is running. use Ctrl+C to stop.")
 
